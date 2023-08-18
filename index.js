@@ -1,39 +1,6 @@
 let id = -1
 
-document.querySelector("form").addEventListener("submit",(e)=>{
-    e.preventDefault()    
-    data={
-        img:document.querySelector("#img").value,
-        name:document.querySelector("#name").value,
-        email:document.querySelector("#email").value,
-        course:document.querySelector("#course").value,
-        grid:document.querySelector("#grid").value
-    }
-
-    let value =document.querySelector("#value").value
-
-    if(value == "submit"){
-        fetch("http://localhost:8080/student",{
-            method:"POST",
-            headers:{"content-type":"application/json"},
-            body:JSON.stringify(data)
-        })
-    }
-    else{
-
-        fetch(`http://localhost:8080/student/${id}`,{
-            method:"PATCH",
-            headers:{"content-type":"application/json"},
-            body:JSON.stringify(data)
-        })
-        document.querySelector("#img").value=""
-        document.querySelector("#name").value=""
-        document.querySelector("#email").value=""
-        document.querySelector("#course").value=""
-        document.querySelector("#grid").value=""
-        document.querySelector("value").value="submit"
-    }
-})
+// update and add
 
 const output = (data) =>{
     data.map((ele)=>{
@@ -74,6 +41,42 @@ const output = (data) =>{
         document.querySelector("#ui").append(div)
     })
 }
+
+document.querySelector("form").addEventListener("submit",(e)=>{
+    e.preventDefault()    
+    data={
+        img:document.querySelector("#img").value,
+        name:document.querySelector("#name").value,
+        email:document.querySelector("#email").value,
+        course:document.querySelector("#course").value,
+        grid:document.querySelector("#grid").value
+    }
+
+    let value =document.querySelector("#value").value
+
+    if(value == "submit"){
+        fetch("http://localhost:8080/student",{
+            method:"POST",
+            headers:{"content-type":"application/json"},
+            body:JSON.stringify(data)
+        })
+    }
+    else{
+
+        fetch(`http://localhost:8080/student/${id}`,{
+            method:"PATCH",
+            headers:{"content-type":"application/json"},
+            body:JSON.stringify(data)
+        })
+        document.querySelector("#img").value=""
+        document.querySelector("#name").value=""
+        document.querySelector("#email").value=""
+        document.querySelector("#course").value=""
+        document.querySelector("#grid").value=""
+        document.querySelector("value").value="submit"
+    }
+})
+
 
 // DELETE 
 
